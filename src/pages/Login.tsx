@@ -1,7 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-type Role = "staff" | "advisor" | "student" | "instructor";
+import { Role } from "../types";
 
 interface Props {
   onLogin: (username: string, role: Role) => void;

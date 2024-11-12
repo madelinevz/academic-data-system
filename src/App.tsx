@@ -5,8 +5,7 @@ import Student from "./pages/Student";
 import Staff from "./pages/Staff";
 import Advisor from "./pages/Advisor";
 import Instructor from "./pages/Instructor";
-
-type Role = "staff" | "advisor" | "student" | "instructor";
+import { Role } from "./types";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);

@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import LogoutButton from "./LogoutButton";
 
 interface Props {
@@ -6,11 +7,13 @@ interface Props {
 }
 
 function Sidebar({ pages, user }: Props) {
+  const location = useLocation();
+
   return (
     <>
       <div
         className="bg-primary text-light d-flex flex-column vh-100 p-3"
-        style={{ width: "250px" }}
+        style={{ width: "250px", height: "100vh", position: "fixed" }}
       >
         {/* Welcome, user header */}
         <div className="text-light h2">Welcome, {user}</div>
@@ -18,16 +21,22 @@ function Sidebar({ pages, user }: Props) {
 
         {/* Make a li for every page available to user */}
         <ul className="nav flex-column nav-underline">
-          {pages.map((page) => (
-            <li className="nav-item" key={page.replace(/[ /-]/g, "")}>
-              <a
-                className="nav-link text-white fs-6"
-                href={page.replace(/[ /-]/g, "")}
-              >
-                {page}
-              </a>
-            </li>
-          ))}
+          {pages.map((page) => {
+            const pagePath = page.replace(/[ /-]/g, "");
+            const isActive = location.pathname.endsWith(pagePath);
+            return (
+              <li className="nav-item" key={pagePath}>
+                <a
+                  className={`nav-link text-white fs-6 ${
+                    isActive ? "active" : ""
+                  }`}
+                  href={pagePath}
+                >
+                  {page}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Logout button at bottom*/}
