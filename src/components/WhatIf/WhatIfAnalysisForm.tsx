@@ -46,11 +46,11 @@ const calculateGPA = (
   let totalCredits = 0;
   pastEnrollemnts.forEach((enrollment) => {
     totalPoints += letterToPoints(enrollment.grade) * enrollment.course.credits;
-    totalCredits += enrollment.course.credits;
+    totalCredits += Number(enrollment.course.credits);
   });
   proposedEnrollments.forEach((enrollment) => {
     totalPoints += letterToPoints(enrollment.grade) * enrollment.course.credits;
-    totalCredits += enrollment.course.credits;
+    totalCredits += Number(enrollment.course.credits);
   });
   return totalPoints / totalCredits;
 };
